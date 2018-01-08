@@ -1,0 +1,29 @@
+<beans xmlns = "http://www.springframework.org/schema/beans"
+       xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context = "http://www.springframework.org/schema/context"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xsi:schemaLocation = "http://www.springframework.org/schema/beans
+                             http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       						 http://www.springframework.org/schema/context
+       						 http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       						 http://cxf.apache.org/jaxrs 
+       						 http://cxf.apache.org/schemas/jaxrs.xsd">
+    
+  	<jaxrs:server id="LocMediatorService" address="/loc">
+  		<jaxrs:serviceBeans>
+  			<ref bean="LocMediatorServiceBean"/>
+  		</jaxrs:serviceBeans>
+  		<jaxrs:providers>
+			<ref bean="jsonProvider"/>
+		</jaxrs:providers>
+  	</jaxrs:server>
+  	
+  	<bean id="LocMediatorServiceBean" class="com.loc.mediator.impl.MediatorCoreImpl">
+  	    <property name="RegionsFile" value="/home/asok/Downloads/tomcat/regions.txt"></property>
+  	    <property name="CentersFile" value="/home/asok/Downloads/tomcat/centers.txt"></property>
+  	    <property name="weightedAvgFile" value="/home/asok/Downloads/tomcat/weightedavg.txt"></property>
+  	</bean>
+  	
+	<bean id="jsonProvider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"/>
+
+</beans>

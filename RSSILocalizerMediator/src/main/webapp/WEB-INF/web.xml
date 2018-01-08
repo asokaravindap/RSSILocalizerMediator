@@ -1,0 +1,32 @@
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+    <display-name>LOCMEDIATOR-API</display-name>
+    
+    <!--listener>
+        <listener-class>com.rssi.datacol.ContextListener</listener-class>
+    </listener-->
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/cxf-servlet.xml</param-value>
+    </context-param>
+
+    <servlet>
+        <description>JAX-RS Localizer Mediator Endpoint</description>
+        <display-name>JAX-RS Localizer Mediator Servlet</display-name>
+        <servlet-name>JAX-RS-LocalizerMediator</servlet-name>
+        <servlet-class>
+            org.apache.cxf.transport.servlet.CXFServlet
+        </servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>JAX-RS-LocalizerMediator</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>60</session-timeout>
+    </session-config>
+</web-app>
